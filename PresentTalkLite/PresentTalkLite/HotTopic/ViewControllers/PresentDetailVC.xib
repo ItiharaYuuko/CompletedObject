@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2327e" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PresentDetailVC" customModule="PresentTalkLite" customModuleProvider="target">
+            <connections>
+                <outlet property="BVPDVCLikeButtonX" destination="sqa-Ve-b0t" id="8dn-1X-4fJ"/>
+                <outlet property="BVPDVCToBuyButtonX" destination="ML4-Ou-kPj" id="jwT-be-Jhb"/>
+                <outlet property="bottomViewPDVCX" destination="DbL-59-yiC" id="hbL-DT-Lm2"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DbL-59-yiC">
+                    <rect key="frame" x="0.0" y="696" width="414" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sqa-Ve-b0t">
+                            <rect key="frame" x="20" y="5" width="118" height="30"/>
+                            <state key="normal" title="♡  喜欢">
+                                <color key="titleColor" red="1" green="0.30889983310000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="LikeBActionX:" destination="-1" eventType="touchUpInside" id="dtj-gU-w64"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML4-Ou-kPj">
+                            <rect key="frame" x="158" y="5" width="236" height="30"/>
+                            <color key="backgroundColor" red="1" green="0.3088998330972223" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="前往购买">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ToBActionX:" destination="-1" eventType="touchUpInside" id="mvp-ne-ENm"/>
+                            </connections>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lF2-I7-PZg">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="HrD-PK-nKw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="ML4-Ou-kPj" firstAttribute="leading" secondItem="sqa-Ve-b0t" secondAttribute="trailing" constant="20" id="3It-fx-aF8"/>
+                        <constraint firstItem="sqa-Ve-b0t" firstAttribute="leading" secondItem="DbL-59-yiC" secondAttribute="leading" constant="20" id="4VR-xD-Oel"/>
+                        <constraint firstItem="lF2-I7-PZg" firstAttribute="top" secondItem="DbL-59-yiC" secondAttribute="top" id="9gi-QQ-4ZI"/>
+                        <constraint firstAttribute="trailing" secondItem="lF2-I7-PZg" secondAttribute="trailing" id="B9d-8l-Z2o"/>
+                        <constraint firstItem="sqa-Ve-b0t" firstAttribute="top" secondItem="DbL-59-yiC" secondAttribute="top" constant="5" id="Cf6-tx-SBl"/>
+                        <constraint firstItem="lF2-I7-PZg" firstAttribute="leading" secondItem="DbL-59-yiC" secondAttribute="leading" id="GIU-hv-lON"/>
+                        <constraint firstItem="ML4-Ou-kPj" firstAttribute="width" secondItem="sqa-Ve-b0t" secondAttribute="width" multiplier="2" id="PVw-rg-zgB"/>
+                        <constraint firstAttribute="trailing" secondItem="ML4-Ou-kPj" secondAttribute="trailing" constant="20" id="VrC-o1-bXI"/>
+                        <constraint firstAttribute="bottom" secondItem="sqa-Ve-b0t" secondAttribute="bottom" constant="5" id="jG8-FS-rE8"/>
+                        <constraint firstAttribute="height" constant="40" id="qvf-yj-hjR"/>
+                        <constraint firstItem="ML4-Ou-kPj" firstAttribute="top" secondItem="DbL-59-yiC" secondAttribute="top" constant="5" id="y51-Hc-V3v"/>
+                        <constraint firstAttribute="bottom" secondItem="ML4-Ou-kPj" secondAttribute="bottom" constant="5" id="zWt-Kc-XJD"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="DbL-59-yiC" secondAttribute="bottom" id="H6U-yD-jzm"/>
+                <constraint firstItem="DbL-59-yiC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W48-jX-bd2"/>
+                <constraint firstAttribute="trailing" secondItem="DbL-59-yiC" secondAttribute="trailing" id="r6x-PV-vt4"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+        </view>
+    </objects>
+</document>

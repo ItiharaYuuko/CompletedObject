@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="16B2333a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoryBannerCell" customModule="PresentTalkLite" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LiS-dN-b9I">
+                        <rect key="frame" x="0.0" y="21" width="414" height="59"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="58.799999999999997" id="DIp-AX-a8R"/>
+                        </constraints>
+                    </scrollView>
+                    <button opaque="NO" tag="666666" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrR-4Y-aX1">
+                        <rect key="frame" x="334" y="0.0" width="80" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="J9R-ET-bCM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="查看全部">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="searchAllButtonAction:" destination="gTV-IL-0wX" eventType="touchUpInside" id="BGf-ms-nXN"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="LiS-dN-b9I" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="F9S-l1-BLa"/>
+                <constraint firstItem="GrR-4Y-aX1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="chw-Na-dYU"/>
+                <constraint firstAttribute="trailing" secondItem="LiS-dN-b9I" secondAttribute="trailing" id="eM6-AW-VJj"/>
+                <constraint firstAttribute="bottom" secondItem="LiS-dN-b9I" secondAttribute="bottom" id="okZ-Oi-Vq4"/>
+                <constraint firstItem="LiS-dN-b9I" firstAttribute="top" secondItem="GrR-4Y-aX1" secondAttribute="bottom" id="psl-Fu-5SG"/>
+                <constraint firstAttribute="trailing" secondItem="GrR-4Y-aX1" secondAttribute="trailing" id="v6s-Qf-XFu"/>
+            </constraints>
+            <size key="customSize" width="414" height="69"/>
+            <connections>
+                <outlet property="BannerScrollView" destination="LiS-dN-b9I" id="dVe-wV-CmN"/>
+                <outlet property="searchAllButton" destination="GrR-4Y-aX1" id="5tP-Sp-A8g"/>
+            </connections>
+            <point key="canvasLocation" x="280" y="253"/>
+        </collectionViewCell>
+    </objects>
+</document>
