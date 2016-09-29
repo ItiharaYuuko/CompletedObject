@@ -69,6 +69,13 @@ class PresentDetailVC: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false ;
         self.navigationItem.title = "礼物详情" ;
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     private func configPDVCTVHV() {
         self.nameLPDVC.font = UIFont.boldSystemFontOfSize(17) ;
         self.priceLPDVC.font = UIFont.systemFontOfSize(15) ;

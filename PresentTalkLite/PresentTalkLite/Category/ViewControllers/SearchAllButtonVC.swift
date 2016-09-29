@@ -16,6 +16,13 @@ class SearchAllButtonVC: UIViewController {
         self.prepareDataForPage() ;
         self.settingUpUI() ;
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     private func settingUpUI() {
         self.navigationItem.title = "全部专题" ;
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()] ;

@@ -84,6 +84,12 @@ class CategoryViewController: UIViewController {
         self.preparePresentPageData() ;
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     private func preparePageData() {
         HDManager.startLoading() ;
         pageNumber = 0 ;
@@ -132,7 +138,7 @@ class CategoryViewController: UIViewController {
     }
     
     func selectPresentAction(sender : UIButton) {
-        print(sender.tag) ;
+        self.pushPCSLPCVVCToNewPage("挑选礼物", pageTag: String(sender.tag)) ;
     }
     
     private func configHarfScrollViewContentView() {
@@ -196,6 +202,14 @@ class CategoryViewController: UIViewController {
                 self.categoryMainScrollView.contentOffset.x = ToolsX.screenWidth ;
             }) ;
         }
+    }
+    
+    private func pushPCSLPCVVCToNewPage(title : String? , pageTag : String) {
+        let pcslpcvvc = PresentCSLPCVVC() ;
+        pcslpcvvc.title = title ;
+        pcslpcvvc.tagX = Int(pageTag)! ;
+        pcslpcvvc.hidesBottomBarWhenPushed = true ;
+        self.navigationController?.pushViewController(pcslpcvvc, animated: true) ;
     }
     
     func bannerButtonsActionX(sender : UIButton) {
@@ -278,12 +292,8 @@ extension CategoryViewController : UICollectionViewDelegate , UICollectionViewDa
         else
         {
             let modelR = self.presentCellDataSource[indexPath.section].subcategories[indexPath.item] ;
-            print(modelR.name) ;
-            let pcslpcvvc = PresentCSLPCVVC() ;
-            pcslpcvvc.title = modelR.name ;
-            pcslpcvvc.tagX = Int(modelR.id)! ;
-            pcslpcvvc.hidesBottomBarWhenPushed = true ;
-            self.navigationController?.pushViewController(pcslpcvvc, animated: true) ;
+            self.pushPCSLPCVVCToNewPage(modelR.name, pageTag: modelR.id) ;
+            
         }
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

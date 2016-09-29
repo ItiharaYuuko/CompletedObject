@@ -33,6 +33,12 @@ class HotTopicViewController: UIViewController {
         self.configCollectionView() ;
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     func configCollectionView() {
         self.hotTopicCollectionViewX.header = MJRefreshNormalHeader(refreshingBlock: {
             self.pageOffset = 0 ;

@@ -18,6 +18,13 @@ class CategorySecondLevelPageVC: UIViewController {
         self.configUIX() ;
         self.prepareDataForPage() ;
     }
+    
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     private func configUIX() {
         let nibX = UINib(nibName: "throughTableViewCell", bundle: nil) ;
         self.CSLPVCTableViewX.registerNib(nibX, forCellReuseIdentifier: "throughTableViewCell") ;

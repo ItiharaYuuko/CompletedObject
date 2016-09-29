@@ -51,6 +51,12 @@ class DetialPost: UIViewController {
         self.view.addSubview(tableViewPost) ;
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     func prepareWebView() {
         let headWebView = UIWebView(frame: CGRectMake(0, 280, ToolsX.screenWidth , 100)) ;
         headWebView.delegate = self ;

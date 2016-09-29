@@ -27,6 +27,12 @@ class DetialCollection: UIViewController , UITableViewDelegate , UITableViewData
         
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     func prepareTheUI() {
         self.automaticallyAdjustsScrollViewInsets = false ;
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()] ;

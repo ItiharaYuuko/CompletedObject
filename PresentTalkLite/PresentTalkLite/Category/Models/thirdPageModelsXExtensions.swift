@@ -118,15 +118,15 @@ extension PresentCategoryTreeModel {
 extension HotTopicCVModelX {
     class func requestPresentCategoryDetailData(itemId : String , pageOffset : String , rollBack : (dataArray : [HotTopicCVModelX]? , error : NSError?) -> Void) {
         let HttpManager = ToolsX.HttpManagerPrepare() ;
-        let urlStr = String(format: ToolsX.APISubCategoryURLString , [itemId , pageOffset]) ;
+        let urlStr = String(format: ToolsX.APISubCategoryURLString , "\(itemId)" , "\(pageOffset)") ;
         HttpManager.GET(urlStr, parameters: nil, progress: nil, success: { (taskX, dataX) in
-            let modelX = HotTopicCVModelX() ;
             var tmpArr = [HotTopicCVModelX]() ;
             let obj = try! NSJSONSerialization.JSONObjectWithData(dataX! as! NSData, options: .MutableContainers) as! NSDictionary ;
             let dataDic = obj["data"] as! NSDictionary ;
             let itemsArr = dataDic["items"] as! NSArray ;
             for elementX in itemsArr {
                 let elementDic = elementX as! NSDictionary ;
+                let modelX = HotTopicCVModelX() ;
                 modelX.coverImageUrl = elementDic["cover_image_url"] as! String ;
                 modelX.descriptionX = elementDic["description"] as! String ;
                 modelX.favoritesCount = (elementDic["favorites_count"] as! NSNumber).stringValue ;
@@ -144,9 +144,65 @@ extension HotTopicCVModelX {
     }
 }
 
+extension presentSelectorButtonModelX {
+    class func requestSelectorButtonData(rollBack : (dataArray : [presentSelectorButtonModelX]? , error : NSError?) -> Void) {
+        let urlStrX = ToolsX.APICategoryPSPBStr ;
+        let HttpManager = ToolsX.HttpManagerPrepare() ;
+        HttpManager.GET(urlStrX, parameters: nil, progress: nil, success: { (taskX, dataX) in
+            let obj = try! NSJSONSerialization.JSONObjectWithData(dataX! as! NSData, options: .MutableContainers) as! NSDictionary ;
+            let dataDic = obj["data"] as! NSDictionary ;
+            let filtersArr = dataDic["filters"] as! [AnyObject] ;
+            var dataArrayTransfer = [presentSelectorButtonModelX]() ;
+            for eleDic in filtersArr {
+                let eleDicX = eleDic as! NSDictionary ;
+                let modelX = presentSelectorButtonModelX() ;
+                var chennalsArrayTmp = [PSBChannelsModelX]() ;
+                modelX.id = (eleDicX["id"] as! NSNumber).stringValue ;
+                modelX.key = eleDicX["key"] as! String ;
+                modelX.name = eleDicX["name"] as! String ;
+                let tmpArrCH = eleDicX["channels"] as! [AnyObject] ;
+                let arrChX = try! PSBChannelsModelX.arrayOfModelsFromDictionaries(tmpArrCH, error: ()) ;
+                for ele in arrChX {
+                    let model = ele as! PSBChannelsModelX ;
+                    chennalsArrayTmp.append(model) ;
+                }
+                modelX.channels = chennalsArrayTmp ;
+                dataArrayTransfer.append(modelX) ;
+            }
+            rollBack(dataArray: dataArrayTransfer, error: nil) ;
+            }) { (dataY, error) in
+                rollBack(dataArray: nil, error: error) ;
+        }
+    }
+}
 
-
-
+extension PresentSelectorListModelX {
+    class func requestPresentSelectorPageData(target : String! = "", scene : String! = "" , personality : String! = "" , price : String! = "" , offset : String! = "",rollBack : (dataArr : [PresentSelectorListModelX]? , error : NSError?) -> Void) {
+        let urlStr = String(format: ToolsX.APIPresentSelectorPageUrlStr, target , scene , personality , price , offset) ;
+        let HttpManager = ToolsX.HttpManagerPrepare() ;
+        //target,&scene,personality,&price,&offset,
+        HttpManager.GET(urlStr, parameters: nil, progress: nil, success: { (taskX, dataX) in
+            let obj = try! NSJSONSerialization.JSONObjectWithData(dataX! as! NSData , options: .MutableContainers) as! NSDictionary ;
+            var transferArr = [PresentSelectorListModelX]() ;
+            let dataDic = obj["data"] as! NSDictionary ;
+            let itemsArrTmp = dataDic["items"] as! [AnyObject] ;
+            for ele in itemsArrTmp {
+                let dicEle = ele as! NSDictionary ;
+                let modelXR = PresentSelectorListModelX() ;
+                modelXR.coverImageUrl = dicEle["cover_image_url"] as! String ;
+                modelXR.Description = dicEle["description"] as! String ;
+                modelXR.favoritesCount = (dicEle["favorites_count"] as! NSNumber).stringValue ;
+                modelXR.id = (dicEle["id"] as! NSNumber).stringValue ;
+                modelXR.name = dicEle["name"] as! String ;
+                modelXR.price = dicEle["price"] as! String ;
+                transferArr.append(modelXR) ;
+            }
+            rollBack(dataArr: transferArr , error: nil) ;
+            }) { (taskY, error) in
+                rollBack(dataArr: nil, error: error) ;
+        }
+    }
+}
 
 
 

@@ -77,6 +77,12 @@ class ViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     func configTabBarItem() {
 //        let tabBarImageNormalNameArr = ["ic_tab_gift_normal" , "ic_tab_select_normal", "ic_tab_category_normal", "ic_tab_profile_normal"] ;
 //        let tabBarName = ["礼物说" , "热门" , "分类" , "我"] ;

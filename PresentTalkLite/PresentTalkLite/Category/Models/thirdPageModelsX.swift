@@ -81,3 +81,34 @@ class subcategoriesModel : NSObject {
     var id : String! ;
     var name : String! ;
 }
+
+class presentSelectorButtonModelX : NSObject {
+    var name : String! ;
+    var id : String! ;
+    var key : String! ;
+    var channels : [PSBChannelsModelX]! ;
+}
+
+class PSBChannelsModelX : JSONModel {
+    var groupId : String! ;
+    var id : String! ;
+    var key : String! ;
+    var name : String! ;
+    override class func propertyIsOptional(property:String)->Bool
+    {
+        return true
+    }
+    override class func keyMapper()->JSONKeyMapper
+    {
+        return JSONKeyMapper.mapperFromUnderscoreCaseToCamelCase()
+    }
+}
+
+class PresentSelectorListModelX : NSObject {
+    var coverImageUrl : String! ;
+    var favoritesCount : String! ;
+    var id : String! ;
+    var name : String! ;
+    var price : String! ;
+    var Description : String! ;
+}

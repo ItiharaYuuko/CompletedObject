@@ -32,6 +32,8 @@ class ToolsX: NSObject {
     static let APICategoryBannerRequestString = "http://api.liwushuo.com/v1/collections?offset=%@&limit=20" ;
     static let APICategoryCollecionItemsString = "http://api.liwushuo.com/v1/channel_groups/all" ;
     static let APICategoryTreeUrlString = "http://api.liwushuo.com/v2/item_categories/tree" ;
+    static let APICategoryPSPBStr = "http://api.liwushuo.com/v2/search/item_filter" ;
+    static let APIPresentSelectorPageUrlStr = "http://api.liwushuo.com/v2/search/item_by_type?target=%@&scene=%@&personality=%@&price=%@&offset=%@&limit=20" ;
     class func calculateStringBounds(string : String , strAreaSize : CGSize , strFont : UIFont) -> CGSize{
         let aimString = NSString(string: string) ;
         let strSize = aimString.boundingRectWithSize(strAreaSize, options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName : strFont], context: nil).size ;

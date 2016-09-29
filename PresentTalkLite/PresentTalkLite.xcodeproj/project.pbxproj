@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC0AE4091D9D1349006E06E0 /* PresentCategoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC0AE4071D9D1349006E06E0 /* PresentCategoryListCell.swift */; };
+		BC0AE40A1D9D1349006E06E0 /* PresentCategoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC0AE4081D9D1349006E06E0 /* PresentCategoryListCell.xib */; };
 		BC1DF2551D926C63004DA97B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1DF2541D926C63004DA97B /* AppDelegate.swift */; };
 		BC1DF2571D926C63004DA97B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC1DF2561D926C63004DA97B /* ViewController.swift */; };
 		BC1DF25A1D926C63004DA97B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC1DF2581D926C63004DA97B /* Main.storyboard */; };
@@ -101,7 +103,6 @@
 		BC5216301D9BAB70001FB909 /* PresentCVHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC52162E1D9BAB70001FB909 /* PresentCVHeaderView.swift */; };
 		BC5216311D9BAB70001FB909 /* PresentCVHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC52162F1D9BAB70001FB909 /* PresentCVHeaderView.xib */; };
 		BC5216341D9BE726001FB909 /* PresentCSLPCVVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5216321D9BE726001FB909 /* PresentCSLPCVVC.swift */; };
-		BC5216351D9BE726001FB909 /* PresentCSLPCVVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC5216331D9BE726001FB909 /* PresentCSLPCVVC.xib */; };
 		BC8142E51D93F7A200D0F525 /* DetialPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8142E41D93F7A200D0F525 /* DetialPost.swift */; };
 		BC8142E71D93F7CB00D0F525 /* DetialCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8142E61D93F7CB00D0F525 /* DetialCollection.swift */; };
 		BC8142E91D9400D000D0F525 /* image_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = BC8142E81D9400D000D0F525 /* image_placeholder.png */; };
@@ -136,6 +137,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC0AE4071D9D1349006E06E0 /* PresentCategoryListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentCategoryListCell.swift; sourceTree = "<group>"; };
+		BC0AE4081D9D1349006E06E0 /* PresentCategoryListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentCategoryListCell.xib; sourceTree = "<group>"; };
 		BC1DF2511D926C63004DA97B /* PresentTalkLite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PresentTalkLite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1DF2541D926C63004DA97B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BC1DF2561D926C63004DA97B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../ViewController.swift; sourceTree = "<group>"; };
@@ -289,7 +292,6 @@
 		BC52162E1D9BAB70001FB909 /* PresentCVHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentCVHeaderView.swift; sourceTree = "<group>"; };
 		BC52162F1D9BAB70001FB909 /* PresentCVHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentCVHeaderView.xib; sourceTree = "<group>"; };
 		BC5216321D9BE726001FB909 /* PresentCSLPCVVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentCSLPCVVC.swift; sourceTree = "<group>"; };
-		BC5216331D9BE726001FB909 /* PresentCSLPCVVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PresentCSLPCVVC.xib; sourceTree = "<group>"; };
 		BC8142E41D93F7A200D0F525 /* DetialPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetialPost.swift; sourceTree = "<group>"; };
 		BC8142E61D93F7CB00D0F525 /* DetialCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetialCollection.swift; sourceTree = "<group>"; };
 		BC8142E81D9400D000D0F525 /* image_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image_placeholder.png; sourceTree = "<group>"; };
@@ -397,7 +399,6 @@
 				BC217E031D9AA5EE00EC7179 /* SearchAllButtonVC.swift */,
 				BC217E041D9AA5EE00EC7179 /* SearchAllButtonVC.xib */,
 				BC5216321D9BE726001FB909 /* PresentCSLPCVVC.swift */,
-				BC5216331D9BE726001FB909 /* PresentCSLPCVVC.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -811,6 +812,8 @@
 				BC217D8A1D99FCEB00EC7179 /* CSLPVCTableViewCell.xib */,
 				BC52162E1D9BAB70001FB909 /* PresentCVHeaderView.swift */,
 				BC52162F1D9BAB70001FB909 /* PresentCVHeaderView.xib */,
+				BC0AE4071D9D1349006E06E0 /* PresentCategoryListCell.swift */,
+				BC0AE4081D9D1349006E06E0 /* PresentCategoryListCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -908,6 +911,7 @@
 				BC81437A1D97AE5F00D0F525 /* ig_profile_photo_default.png in Resources */,
 				BC5216311D9BAB70001FB909 /* PresentCVHeaderView.xib in Resources */,
 				BCE5AF331D937BB9009C6C00 /* bg_user_select_type.png in Resources */,
+				BC0AE40A1D9D1349006E06E0 /* PresentCategoryListCell.xib in Resources */,
 				BC8143701D968A0F00D0F525 /* LabelViewCell.xib in Resources */,
 				BC1DF5FB1D927B8A004DA97B /* ic_tab_home_normal.png in Resources */,
 				BC1DF6001D927B8A004DA97B /* ic_tab_select_selected.png in Resources */,
@@ -938,7 +942,6 @@
 				BC8142ED1D9406EC00D0F525 /* PostDetialCell.xib in Resources */,
 				BC1DF5F91D927B8A004DA97B /* ic_tab_gift_normal.png in Resources */,
 				BC1DF6B21D927B8A004DA97B /* secondary_banner_empty.png in Resources */,
-				BC5216351D9BE726001FB909 /* PresentCSLPCVVC.xib in Resources */,
 				BC1DF25A1D926C63004DA97B /* Main.storyboard in Resources */,
 				BC217D6C1D991B7E00EC7179 /* PresentItemCell.xib in Resources */,
 			);
@@ -1024,6 +1027,7 @@
 				BC1DF3301D9279BB004DA97B /* UIImageView+WebCache.m in Sources */,
 				BC1DF30B1D9279BB004DA97B /* JSONKeyMapper.m in Sources */,
 				BC8143771D96C3E200D0F525 /* SummaryTableViewNXT.swift in Sources */,
+				BC0AE4091D9D1349006E06E0 /* PresentCategoryListCell.swift in Sources */,
 				BC217D631D9915D600EC7179 /* CategoryItemCell.swift in Sources */,
 				BC1DF3271D9279BB004DA97B /* SDWebImageDownloader.m in Sources */,
 				BCE5AF391D93AB7C009C6C00 /* throughTableViewCell.swift in Sources */,

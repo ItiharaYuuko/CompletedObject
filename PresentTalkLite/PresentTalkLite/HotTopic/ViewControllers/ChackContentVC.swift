@@ -24,6 +24,12 @@ class ChackContentVC: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    override func viewDidDisappear(animated: Bool) {
+        channelOffset = 0 ;
+        pageNumber = 0 ;
+        collectionOffset = 0 ;
+    }
+    
     func configWebViewX() {
         self.webViewCCVCX.frame = CGRectMake(0, 64, ToolsX.screenWidth, ToolsX.screenHeight - 64) ;
         self.view.addSubview(self.webViewCCVCX) ;
