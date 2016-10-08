@@ -187,15 +187,23 @@ extension PresentSelectorListModelX {
             let dataDic = obj["data"] as! NSDictionary ;
             let itemsArrTmp = dataDic["items"] as! [AnyObject] ;
             for ele in itemsArrTmp {
-                let dicEle = ele as! NSDictionary ;
-                let modelXR = PresentSelectorListModelX() ;
-                modelXR.coverImageUrl = dicEle["cover_image_url"] as! String ;
-                modelXR.Description = dicEle["description"] as! String ;
-                modelXR.favoritesCount = (dicEle["favorites_count"] as! NSNumber).stringValue ;
-                modelXR.id = (dicEle["id"] as! NSNumber).stringValue ;
-                modelXR.name = dicEle["name"] as! String ;
-                modelXR.price = dicEle["price"] as! String ;
-                transferArr.append(modelXR) ;
+                if let dicEle = ele as? NSDictionary
+                {
+                    let modelXR = PresentSelectorListModelX() ;
+                    modelXR.coverImageUrl = dicEle["cover_image_url"] as! String ;
+                    if let strDisc = dicEle["description"] as? String {
+                        modelXR.Description = strDisc ;
+                    }
+                    else
+                    {
+                        modelXR.Description = "" ;
+                    }
+                    modelXR.favoritesCount = (dicEle["favorites_count"] as! NSNumber).stringValue ;
+                    modelXR.id = (dicEle["id"] as! NSNumber).stringValue ;
+                    modelXR.name = dicEle["name"] as! String ;
+                    modelXR.price = dicEle["price"] as! String ;
+                    transferArr.append(modelXR) ;
+                }
             }
             rollBack(dataArr: transferArr , error: nil) ;
             }) { (taskY, error) in

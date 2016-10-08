@@ -13,7 +13,10 @@ class PresentCSLPCVVC: UIViewController {
     private var categoryTableViewDataSourceArray = [HotTopicCVModelX]() ;
     private var presentSelectorButtonDataArray = [presentSelectorButtonModelX]() ;
     private var presentSelectorDataSourceArray = [PresentSelectorListModelX]() ;
-    private var topButtonViewX = UIView(frame: CGRectMake(0, 64, ToolsX.screenWidth, 40)) ;
+    private lazy var topButtonViewX : UIView = {
+        let tempViewX = UIView(frame: CGRectMake(0, 64, ToolsX.screenWidth, 40)) ;
+        return tempViewX ;
+    }() ;
     private lazy var selectedTableViewX: UITableView = {
         let tmpTableView = UITableView(frame: CGRectMake(0, 64, ToolsX.screenWidth, ToolsX.screenHeight - 64)) ;
         tmpTableView.dataSource = self ;
@@ -22,7 +25,20 @@ class PresentCSLPCVVC: UIViewController {
         tmpTableView.registerNib(nibX, forCellReuseIdentifier: "PresentCategoryListCell") ;
         return tmpTableView ;
     }() ;
+    private lazy var topPickerViewX : UIPickerView = {
+        let tmpPickerViewX = UIPickerView(frame: CGRectMake(0, 104, ToolsX.screenWidth , 200)) ;
+        tmpPickerViewX.delegate = self ;
+        tmpPickerViewX.dataSource = self ;
+        tmpPickerViewX.hidden = true ;
+        tmpPickerViewX.backgroundColor = UIColor.whiteColor() ;
+        return tmpPickerViewX ;
+    }() ;
     var tagX = 0 ;
+    private var target = ""
+    private var scene = ""
+    private var personality = ""
+    private var price = ""
+    private var offset = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false ;
@@ -37,6 +53,27 @@ class PresentCSLPCVVC: UIViewController {
         collectionOffset = 0 ;
     }
     
+    private func configButtonsOnTopViewX() {
+        var n = 0 ;
+        for eleBDX in self.presentSelectorButtonDataArray {
+            let tmpButtonX = UIButton(frame: CGRectMake(CGFloat(n) * (ToolsX.screenWidth / 4), 0 , ToolsX.screenWidth / 4, 40)) ;
+            tmpButtonX.setTitle(eleBDX.name, forState: .Normal) ;
+            tmpButtonX.tag = 13 + n ;
+            tmpButtonX.addTarget(self, action: #selector(self.topButtonsActionX(_:)), forControlEvents: .TouchUpInside) ;
+            tmpButtonX.setTitleColor(UIColor.blackColor(), forState: .Normal) ;
+            tmpButtonX.setTitleColor(ToolsX.barTintColor, forState: .Highlighted) ;
+            self.topButtonViewX.addSubview(tmpButtonX) ;
+            n += 1 ;
+        }
+    }
+    
+    func topButtonsActionX(button : UIButton) {
+        self.topPickerViewX.hidden = !self.topPickerViewX.hidden ;
+        if self.topPickerViewX.hidden {
+            self.selectedTableViewX.header.beginRefreshing() ;
+        }
+    }
+    
     private func configUIXCurrentButtonAndPicker() {
         self.view.addSubview(self.selectedTableViewX) ;
         self.selectedTableViewX.header = MJRefreshNormalHeader(refreshingBlock: {
@@ -48,7 +85,7 @@ class PresentCSLPCVVC: UIViewController {
             else
             {
                 self.presentSelectorDataSourceArray.removeAll() ;
-                self.loadPSLData(offset: String(pageNumber)) ;
+                self.loadPSLData(self.target, scene: self.scene, personality: self.personality, price: self.price, offset: String(pageNumber)) ;
             }
         }) ;
         self.selectedTableViewX.footer = MJRefreshAutoNormalFooter(refreshingBlock: {
@@ -58,16 +95,17 @@ class PresentCSLPCVVC: UIViewController {
             }
             else
             {
-                self.loadPSLData(offset: String(pageNumber)) ;
+                self.loadPSLData(self.target, scene: self.scene, personality: self.personality, price: self.price, offset: String(pageNumber)) ;
             }
         }) ;
-        self.topButtonViewX.backgroundColor = UIColor.redColor() ;
+        self.topButtonViewX.backgroundColor = UIColor.whiteColor() ;
         if self.tagX > 0 {
             self.selectedTableViewX.frame = CGRectMake(0, 64, ToolsX.screenWidth, ToolsX.screenHeight - 64) ;
         }
         else
         {
             self.view.addSubview(self.topButtonViewX) ;
+            self.view.addSubview(self.topPickerViewX) ;
             self.selectedTableViewX.frame = CGRectMake(0, 104, ToolsX.screenWidth, ToolsX.screenHeight - 104) ;
         }
         self.prepareItemListData() ;
@@ -80,7 +118,7 @@ class PresentCSLPCVVC: UIViewController {
         else
         {
             self.loadPSBData() ;
-            self.loadPSLData("", scene: "", personality: "", price: "", offset: "") ;
+            self.loadPSLData(self.target, scene: self.scene, personality: self.personality, price: self.price, offset: String(pageNumber)) ;
         }
     }
     
@@ -105,6 +143,8 @@ class PresentCSLPCVVC: UIViewController {
         presentSelectorButtonModelX.requestSelectorButtonData({ (dataArray, error) in
             if error == nil {
                 self.presentSelectorButtonDataArray.appendContentsOf(dataArray!) ;
+                self.topPickerViewX.reloadAllComponents() ;
+                self.configButtonsOnTopViewX() ;
                 self.stopLoadingData() ;
             }
             else
@@ -182,6 +222,77 @@ extension PresentCSLPCVVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) ;
+//        let PDVCX = PresentDetailVC() ;
+//        PDVCX.hidesBottomBarWhenPushed = true ;
+//        self.navigationController?.pushViewController(PDVCX, animated: true) ;
+//        Added the function of detial information's changed by request URL string, and the same time for the net level page in the third page of the category
     }
     
+}
+
+extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return self.presentSelectorButtonDataArray.count ;
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let currentChannel = self.presentSelectorButtonDataArray[component].channels ;
+        return currentChannel.count ;
+    }
+    func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 44 ;
+    }
+    func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return ToolsX.screenWidth / 4 ;
+    }
+    func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
+        let componetModelX = self.presentSelectorButtonDataArray[component] ;
+        let pickerViewLabelX = UILabel(frame: CGRectMake(0, 0, ToolsX.screenWidth / 4 , 44)) ;
+        pickerViewLabelX.font = UIFont.systemFontOfSize(17) ;
+        pickerViewLabelX.textAlignment = .Center ;
+        if row == 0 {
+            pickerViewLabelX.text = "全部" ;
+        }
+        else
+        {
+            pickerViewLabelX.text = componetModelX.channels[row].name ;
+        }
+        return pickerViewLabelX ;
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let componetModelY = self.presentSelectorButtonDataArray[component].channels ;
+        switch component {
+        case 0 :
+            if row == 0 {
+                self.target = "" ;
+            }
+            else
+            {
+                self.target = componetModelY[row].key ;
+            }
+        case 1 :
+            if row == 0 {
+                self.scene = "" ;
+            }
+            else
+            {
+                self.scene = componetModelY[row].key ;
+            }
+        case 2 :
+            if row == 0 {
+                self.personality = "" ;
+            }
+            else
+            {
+                self.personality = componetModelY[row].key ;
+            }
+        default :
+            if row == 0 {
+                self.price = "" ;
+            }
+            else
+            {
+                self.price = componetModelY[row].key ;
+            }
+        }
+    }
 }
