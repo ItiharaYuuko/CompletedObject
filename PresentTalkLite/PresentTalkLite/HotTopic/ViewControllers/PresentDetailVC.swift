@@ -68,12 +68,25 @@ class PresentDetailVC: UIViewController {
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false ;
         self.navigationItem.title = "礼物详情" ;
+        self.configNavigationShareButton() ;
     }
     
     override func viewDidDisappear(animated: Bool) {
         channelOffset = 0 ;
         pageNumber = 0 ;
         collectionOffset = 0 ;
+    }
+    
+    private func configNavigationShareButton() {
+        let buttonBarItemX = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(self.shareButtonAction(_:))) ;
+        buttonBarItemX.tintColor = UIColor.whiteColor() ;
+        buttonBarItemX.tag = 767 ;
+        self.navigationItem.rightBarButtonItem = buttonBarItemX ;
+    }
+//MARK: - U-Share settingup for object.
+    func shareButtonAction(BarButton : UIBarButtonItem) {
+        print(BarButton.tag) ;
+        //UmengShare will used at here.
     }
     
     private func configPDVCTVHV() {

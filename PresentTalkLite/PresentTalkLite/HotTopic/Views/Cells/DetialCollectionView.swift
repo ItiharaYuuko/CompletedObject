@@ -126,7 +126,8 @@ extension DetialCollectionView : UICollectionViewDelegateFlowLayout , UICollecti
         {
             let cellZ = collectionView.dequeueReusableCellWithReuseIdentifier("ImageViewCell", forIndexPath: indexPath) as! ImageViewCell ;
             cellZ.imageViewDCCVX.sd_setImageWithURL(NSURL(string: self.imageUrlArray[indexPath.item - 1])) ;
-            cellZ.resetFrame() ;
+//            cellZ.resetFrame() ;
+//            print(indexPath.row) ;
             cellX = cellZ ;
         }
         return cellX ;
@@ -146,17 +147,13 @@ extension DetialCollectionView : UICollectionViewDelegateFlowLayout , UICollecti
         else
         {
             var imageX : UIImage? ;
-            var imageSize : CGSize = CGSizeZero ;
+            var imageSize : CGSize = CGSizeMake(ToolsX.screenWidth, 0) ;
             let imageUrlXC = self.imageUrlArray[indexPath.item - 1] ;
-            if let imageData = try? NSData(contentsOfURL: NSURL(string: imageUrlXC)! , options: .DataReadingMappedAlways) {
-                imageX = UIImage(data: imageData) ;
-            }
-            if imageX != nil {
-                imageSize = imageX!.size ;
-            }
-            else
-            {
-                imageSize = CGSizeZero ;
+            if let imageUrlXN = NSURL(string: imageUrlXC) {
+                if let imageData = try? NSData(contentsOfURL: imageUrlXN , options: .DataReadingMappedAlways) {
+                    imageX = UIImage(data: imageData) ;
+                    imageSize = imageX!.size ;
+                }
             }
             let imageScall = imageSize.width / ToolsX.screenWidth ;
             let sizeImageCellX = CGSizeMake(ToolsX.screenWidth, imageSize.height / imageScall) ;

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--礼物说-->
+        <!--礼物Lite-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PresentTalkLite" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="礼物说" id="dYa-l0-vwv"/>
+                    <navigationItem key="navigationItem" title="礼物Lite" id="dYa-l0-vwv"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -45,7 +45,7 @@
             </objects>
             <point key="canvasLocation" x="973" y="-458"/>
         </scene>
-        <!--热门-->
+        <!--热门Lite-->
         <scene sceneID="oQg-9r-CC2">
             <objects>
                 <viewController id="1j7-fs-dRC" customClass="HotTopicViewController" customModule="PresentTalkLite" customModuleProvider="target" sceneMemberID="viewController">
@@ -58,7 +58,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="热门" id="a7b-TW-krF"/>
+                    <navigationItem key="navigationItem" title="热门Lite" id="a7b-TW-krF"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKc-ds-vf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -165,8 +165,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="bg_user_select_type.png" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-wF-bXu">
-                                <rect key="frame" x="0.0" y="64" width="414" height="623"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_user_select_type.png" translatesAutoresizingMaskIntoConstraints="NO" id="m7h-wF-bXu">
+                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="secondary_banner_empty.png" translatesAutoresizingMaskIntoConstraints="NO" id="Uu9-UI-IGg">
                                 <rect key="frame" x="47" y="208" width="320" height="320"/>

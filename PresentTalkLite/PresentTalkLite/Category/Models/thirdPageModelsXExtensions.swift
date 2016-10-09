@@ -212,7 +212,28 @@ extension PresentSelectorListModelX {
     }
 }
 
-
+extension HotTopicCVModelX {
+    class func requestThirdPageNextLevelPageData(transferedId : String , rollBack : (dataModel : HotTopicCVModelX? , error : NSError?) -> Void) {
+        let HttpManager = ToolsX.HttpManagerPrepare() ;
+        let urlStrSTVDX = String(format: "http://api.liwushuo.com/v2/items/%@", transferedId) ;
+        HttpManager.GET(urlStrSTVDX, parameters: nil, progress: nil, success: { (taskX, dataX) in
+            let obj = try! NSJSONSerialization.JSONObjectWithData(dataX! as! NSData, options: .MutableContainers) as! NSDictionary ;
+            let dataDic = obj["data"] as! NSDictionary ;
+            let modelRX = HotTopicCVModelX() ;
+            modelRX.coverImageUrl = dataDic["cover_image_url"] as! String ;
+            modelRX.descriptionX = dataDic["description"] as! String ;
+            modelRX.favoritesCount = (dataDic["favorites_count"] as! NSNumber).stringValue ;
+            modelRX.id = (dataDic["id"] as! NSNumber).stringValue ;
+            modelRX.imageUrls = dataDic["image_urls"] as! [String] ;
+            modelRX.name = dataDic["name"] as! String ;
+            modelRX.price = dataDic["price"] as! String ;
+            modelRX.purchaseUrl = dataDic["purchase_url"] as! String ;
+            rollBack(dataModel: modelRX, error: nil) ;
+        }) { (taskY, error) in
+            rollBack(dataModel: nil, error: error) ;
+        }
+    }
+}
 
 
 

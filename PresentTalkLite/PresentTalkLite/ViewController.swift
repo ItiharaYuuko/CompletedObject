@@ -89,7 +89,7 @@ class ViewController: UIViewController {
 //        If I need to add the page of mine , I have to link the tab bar in story board ,
 //        and reset the two info array to the tab bar items.
         let tabBarImageNormalNameArr = ["ic_tab_gift_normal" , "ic_tab_select_normal", "ic_tab_category_normal"] ;
-        let tabBarName = ["礼物说" , "热门" , "分类"] ;
+        let tabBarName = ["礼物Lite" , "热门Lite" , "分类Lite"] ;
         for imageNameIndex in 0 ..< tabBarImageNormalNameArr.count {
             let nameImageNormal = tabBarImageNormalNameArr[imageNameIndex] ;
             let nameImageSelected = nameImageNormal.stringByReplacingOccurrencesOfString("normal", withString: "selected") ;

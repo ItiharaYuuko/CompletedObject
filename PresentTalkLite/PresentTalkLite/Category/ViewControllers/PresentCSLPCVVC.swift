@@ -29,7 +29,8 @@ class PresentCSLPCVVC: UIViewController {
         let tmpPickerViewX = UIPickerView(frame: CGRectMake(0, 104, ToolsX.screenWidth , 200)) ;
         tmpPickerViewX.delegate = self ;
         tmpPickerViewX.dataSource = self ;
-        tmpPickerViewX.hidden = true ;
+//        tmpPickerViewX.hidden = true ;
+        tmpPickerViewX.center.y = -204
         tmpPickerViewX.backgroundColor = UIColor.whiteColor() ;
         return tmpPickerViewX ;
     }() ;
@@ -60,6 +61,8 @@ class PresentCSLPCVVC: UIViewController {
             tmpButtonX.setTitle(eleBDX.name, forState: .Normal) ;
             tmpButtonX.tag = 13 + n ;
             tmpButtonX.addTarget(self, action: #selector(self.topButtonsActionX(_:)), forControlEvents: .TouchUpInside) ;
+            tmpButtonX.layer.borderWidth = 1 ;
+            tmpButtonX.layer.borderColor = UIColor.groupTableViewBackgroundColor().CGColor ;
             tmpButtonX.setTitleColor(UIColor.blackColor(), forState: .Normal) ;
             tmpButtonX.setTitleColor(ToolsX.barTintColor, forState: .Highlighted) ;
             self.topButtonViewX.addSubview(tmpButtonX) ;
@@ -68,10 +71,19 @@ class PresentCSLPCVVC: UIViewController {
     }
     
     func topButtonsActionX(button : UIButton) {
-        self.topPickerViewX.hidden = !self.topPickerViewX.hidden ;
-        if self.topPickerViewX.hidden {
+        if self.topPickerViewX.center.y != 204 {
+            UIView.animateWithDuration(1) {
+                self.topPickerViewX.center.y = 204 ;
+            }
+        }
+        else
+        {
+            UIView.animateWithDuration(1) {
+                self.topPickerViewX.center.y = -204 ;
+            } ;
             self.selectedTableViewX.header.beginRefreshing() ;
         }
+        
     }
     
     private func configUIXCurrentButtonAndPicker() {
@@ -179,7 +191,7 @@ class PresentCSLPCVVC: UIViewController {
     
 }
 
-extension PresentCSLPCVVC : UITableViewDelegate , UITableViewDataSource {
+extension PresentCSLPCVVC : UITableViewDelegate , UITableViewDataSource , UIScrollViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.tagX > 0 {
             return self.categoryTableViewDataSourceArray.count ;
@@ -222,12 +234,53 @@ extension PresentCSLPCVVC : UITableViewDelegate , UITableViewDataSource {
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) ;
-//        let PDVCX = PresentDetailVC() ;
-//        PDVCX.hidesBottomBarWhenPushed = true ;
-//        self.navigationController?.pushViewController(PDVCX, animated: true) ;
-//        Added the function of detial information's changed by request URL string, and the same time for the net level page in the third page of the category
+        if self.tagX > 0 {
+            let modelRNX = self.categoryTableViewDataSourceArray[indexPath.row] ;
+            HotTopicCVModelX.requestThirdPageNextLevelPageData(modelRNX.id) { (dataModel, error) in
+                if error == nil {
+                    let persentDVC = PresentDetailVC() ;
+                    persentDVC.adSVPDVC.imageURLArray = dataModel!.imageUrls ;
+                    persentDVC.descriptionLPDVC.text = dataModel!.descriptionX ;
+                    persentDVC.priceLPDVC.text = "￥ \(dataModel!.price!)" ;
+                    persentDVC.nameLPDVC.text = dataModel!.name ;
+                    persentDVC.itemAimURLStr = dataModel!.purchaseUrl ;
+                    persentDVC.transferId = dataModel!.id ;
+                    persentDVC.hidesBottomBarWhenPushed = true ;
+                    self.navigationController?.pushViewController(persentDVC, animated: true) ;
+                }
+                else
+                {
+                    print(error!) ;
+                }
+            }
+        }
+        else
+        {
+            let modelRNX = self.presentSelectorDataSourceArray[indexPath.row] ;
+            HotTopicCVModelX.requestThirdPageNextLevelPageData(modelRNX.id) { (dataModel, error) in
+                if error == nil {
+                    let persentDVC = PresentDetailVC() ;
+                    persentDVC.adSVPDVC.imageURLArray = dataModel!.imageUrls ;
+                    persentDVC.descriptionLPDVC.text = dataModel!.descriptionX ;
+                    persentDVC.priceLPDVC.text = "￥ \(dataModel!.price!)" ;
+                    persentDVC.nameLPDVC.text = dataModel!.name ;
+                    persentDVC.itemAimURLStr = dataModel!.purchaseUrl ;
+                    persentDVC.transferId = dataModel!.id ;
+                    persentDVC.hidesBottomBarWhenPushed = true ;
+                    self.navigationController?.pushViewController(persentDVC, animated: true) ;
+                }
+                else
+                {
+                    print(error!) ;
+                }
+            }
+        }
     }
-    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        UIView.animateWithDuration(1) { 
+            self.topPickerViewX.center.y = -204 ;
+        } ;
+    }
 }
 
 extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
