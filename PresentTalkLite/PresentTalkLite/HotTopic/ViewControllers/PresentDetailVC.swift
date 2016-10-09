@@ -86,7 +86,28 @@ class PresentDetailVC: UIViewController {
 //MARK: - U-Share settingup for object.
     func shareButtonAction(BarButton : UIBarButtonItem) {
         print(BarButton.tag) ;
-        //UmengShare will used at here.
+        weak var weakSelf = self ;
+        UMSocialUIManager.showShareMenuViewInView(nil) { (selectionView, indexPathX, platformType) in
+            UMSocialUIManager.dismissShareMenuView() ;
+            weakSelf?.shareDataWithPlatform(platformType) ;
+        }
+    }
+    
+    private func shareDataWithPlatform(platformType : UMSocialPlatformType) {
+        let messageObject = UMSocialMessageObject() ;
+        let title = self.nameLPDVC.text! ;
+        let url = "\(self.itemAimURLStr)" ;
+        let text = self.descriptionLPDVC.text! ;
+//        let imageUrl = NSURL(string: self.adSVPDVC.imageURLArray[0] as! String) ;
+        messageObject.text = "name : \(title) , url : \(url) , text : \(text)" ;
+//        dispatch_async(dispatch_get_global_queue(0, 0)) { 
+//            let imageData = NSData(contentsOfURL: imageUrl!) ;
+//            let image = UIImage(data: imageData!) ;
+//            let shareObject = UMShareImageObject.shareObjectWithTitle(title, descr: "\(text)\(url)", thumImage: image) ;
+//            print(shareObject.object) ;
+//            shareObject.shareImage = image ;
+//        }
+        print(messageObject.text) ;
     }
     
     private func configPDVCTVHV() {

@@ -15,4 +15,7 @@
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import <UMSocialCore/UMSocialCore.h>
+#import "UMSocialUIManager.h"
+#import <UMSocialCore/UMSocialCore.h>
 #endif /* ThirdLibraryBridgeHeader_h */

@@ -16,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        UMSocialManager.defaultManager().openLog(true) ;
+        UMSocialManager.defaultManager().umSocialAppkey = "57fa4556e0f55a915d000c6b" ;
+        UMSocialManager.defaultManager().setPlaform(.Sina, appKey: "1933635506", appSecret: "fec33670b52024cbbd63a9af19b0b096", redirectURL: "http://mobile.umeng.com/social") ;
+        
         return true
+    }
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        let result = UMSocialManager.defaultManager().handleOpenURL(url) ;
+        if result {
+            print("分享回调成功") ;
+        }
+        return result ;
     }
 
     func applicationWillResignActive(application: UIApplication) {

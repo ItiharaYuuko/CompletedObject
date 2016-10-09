@@ -152,7 +152,9 @@ extension DetialCollectionView : UICollectionViewDelegateFlowLayout , UICollecti
             if let imageUrlXN = NSURL(string: imageUrlXC) {
                 if let imageData = try? NSData(contentsOfURL: imageUrlXN , options: .DataReadingMappedAlways) {
                     imageX = UIImage(data: imageData) ;
-                    imageSize = imageX!.size ;
+                    if (imageX != nil) {
+                        imageSize = imageX!.size ;
+                    }
                 }
             }
             let imageScall = imageSize.width / ToolsX.screenWidth ;

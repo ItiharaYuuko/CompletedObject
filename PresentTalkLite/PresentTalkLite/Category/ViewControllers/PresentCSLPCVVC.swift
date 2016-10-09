@@ -72,13 +72,13 @@ class PresentCSLPCVVC: UIViewController {
     
     func topButtonsActionX(button : UIButton) {
         if self.topPickerViewX.center.y != 204 {
-            UIView.animateWithDuration(1) {
+            UIView.animateWithDuration(0.5) {
                 self.topPickerViewX.center.y = 204 ;
             }
         }
         else
         {
-            UIView.animateWithDuration(1) {
+            UIView.animateWithDuration(0.5) {
                 self.topPickerViewX.center.y = -204 ;
             } ;
             self.selectedTableViewX.header.beginRefreshing() ;
@@ -277,7 +277,7 @@ extension PresentCSLPCVVC : UITableViewDelegate , UITableViewDataSource , UIScro
         }
     }
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        UIView.animateWithDuration(1) { 
+        UIView.animateWithDuration(0.5) {
             self.topPickerViewX.center.y = -204 ;
         } ;
     }
@@ -289,17 +289,17 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
     }
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         let currentChannel = self.presentSelectorButtonDataArray[component].channels ;
-        return currentChannel.count ;
+        return currentChannel.count + 1 ;
     }
     func pickerView(pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 44 ;
     }
     func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return ToolsX.screenWidth / 4 ;
+        return ToolsX.screenWidth / 4 - 10 ;
     }
     func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
         let componetModelX = self.presentSelectorButtonDataArray[component] ;
-        let pickerViewLabelX = UILabel(frame: CGRectMake(0, 0, ToolsX.screenWidth / 4 , 44)) ;
+        let pickerViewLabelX = UILabel(frame: CGRectMake(0, 0, ToolsX.screenWidth / 4 - 12 , 40)) ;
         pickerViewLabelX.font = UIFont.systemFontOfSize(17) ;
         pickerViewLabelX.textAlignment = .Center ;
         if row == 0 {
@@ -307,11 +307,12 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
         }
         else
         {
-            pickerViewLabelX.text = componetModelX.channels[row].name ;
+            pickerViewLabelX.text = componetModelX.channels[row - 1].name ;
         }
         return pickerViewLabelX ;
     }
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerView.selectRow(row, inComponent: component, animated: true) ;
         let componetModelY = self.presentSelectorButtonDataArray[component].channels ;
         switch component {
         case 0 :
@@ -320,7 +321,7 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
             }
             else
             {
-                self.target = componetModelY[row].key ;
+                self.target = componetModelY[row - 1].key ;
             }
         case 1 :
             if row == 0 {
@@ -328,7 +329,7 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
             }
             else
             {
-                self.scene = componetModelY[row].key ;
+                self.scene = componetModelY[row - 1].key ;
             }
         case 2 :
             if row == 0 {
@@ -336,7 +337,7 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
             }
             else
             {
-                self.personality = componetModelY[row].key ;
+                self.personality = componetModelY[row - 1].key ;
             }
         default :
             if row == 0 {
@@ -344,7 +345,7 @@ extension PresentCSLPCVVC : UIPickerViewDelegate , UIPickerViewDataSource {
             }
             else
             {
-                self.price = componetModelY[row].key ;
+                self.price = componetModelY[row - 1].key ;
             }
         }
     }
