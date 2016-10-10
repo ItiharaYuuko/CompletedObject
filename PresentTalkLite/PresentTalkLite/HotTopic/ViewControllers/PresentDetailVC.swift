@@ -76,14 +76,15 @@ class PresentDetailVC: UIViewController {
         pageNumber = 0 ;
         collectionOffset = 0 ;
     }
-    
+//MARK: - U-Share settingup for object.
     private func configNavigationShareButton() {
         let buttonBarItemX = UIBarButtonItem(barButtonSystemItem: .Action, target: self, action: #selector(self.shareButtonAction(_:))) ;
         buttonBarItemX.tintColor = UIColor.whiteColor() ;
         buttonBarItemX.tag = 767 ;
-        self.navigationItem.rightBarButtonItem = buttonBarItemX ;
+//        self.navigationItem.rightBarButtonItem = buttonBarItemX ;
+//The function of the share button when you want activited. Please do not sigin a summary for the code.
     }
-//MARK: - U-Share settingup for object.
+    
     func shareButtonAction(BarButton : UIBarButtonItem) {
         print(BarButton.tag) ;
         weak var weakSelf = self ;

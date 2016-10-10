@@ -67,5 +67,7 @@
 		<string>weibosdk2.5</string>
 		<string>weibosdk</string>
 	</array>
+	<key>CFBundleDisplayName</key>
+	<string>礼物Lite</string>
 </dict>
 </plist>

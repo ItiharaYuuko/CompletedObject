@@ -1397,6 +1397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zbzNXT.PresentTalkLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PresentTalkLite/ToolsFolder/ThirdLibraryBridgeHeader.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1422,6 +1423,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = zbzNXT.PresentTalkLite;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/PresentTalkLite/ToolsFolder/ThirdLibraryBridgeHeader.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
